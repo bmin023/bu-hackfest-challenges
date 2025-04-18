@@ -36,12 +36,18 @@ async fn main() -> Result<()> {
         .route("/", get(|| async { Html(IndexTemplate.render().unwrap()) }))
         .route("/challenge", post(serve_challenge))
         .route("/submit", post(handle_submit))
+        .route("/flag", get(serve_flag))
         .with_state(state);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
     axum::serve(listener, app).await.unwrap();
 
     Ok(())
+}
+
+async fn serve_flag(State(state): State<AppState>) -> Html<String> {
+    let flag = state.flag.lock().await;
+    Html(flag.to_string())
 }
 
 async fn serve_challenge(State(state): State<AppState>) -> Html<String> {
@@ -145,7 +151,7 @@ fn generate_challenge() -> (Uuid, String, i64) {
     let answer = n1 + n2 * n3 - n4;
     let challenge = format!(
         "What is {} + {} * {} - {}?",
-        numbers.0, numbers.1, numbers.2, numbers.3
+        n1, n2, n3, n4
     );
     return (Uuid::new_v4(), challenge, answer);
 }
