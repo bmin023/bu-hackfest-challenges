@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phone Dial Pad</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background: #f0f0f0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .dial-pad {
+        display: grid;
+        grid-template-columns: repeat(3, 60px);
+        grid-gap: 10px;
+        justify-content: center;
+      }
+      .dial-button,
+      .call-button,
+      .hangup-button {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.1s ease;
+      }
+      .dial-button:hover,
+      .call-button:hover,
+      .hangup-button:hover {
+        transform: scale(1.05);
+      }
+      .dial-button {
+        background: #e0e0e0;
+      }
+      .dial-button:active {
+        background: #d5d5d5;
+      }
+      .call-button {
+        background: #4caf50;
+        color: #fff;
+      }
+      .call-button:active {
+        background: #43a047;
+      }
+      .hangup-button {
+        background: #f44336;
+        color: #fff;
+      }
+      .hangup-button:active {
+        background: #e53935;
+      }
+      .icon {
+        margin:auto;
+        width: 75%;
+        height: 75%;
+      }
+      #notification {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="notification"></p>
+    <div class="container">
+      <div class="dial-pad">
+        <!-- Numbers 1-9 -->
+        <button class="dial-button">1</button>
+        <button class="dial-button">2</button>
+        <button class="dial-button">3</button>
+        <button class="dial-button">4</button>
+        <button class="dial-button">5</button>
+        <button class="dial-button">6</button>
+        <button class="dial-button">7</button>
+        <button class="dial-button">8</button>
+        <button class="dial-button">9</button>
+        <!-- Call, 0, Hang Up -->
+        <button class="call-button"><div data-lucide="phone" class="icon"></div></button>
+        <button class="dial-button">0</button>
+        <button class="hangup-button"><div data-lucide="phone-off" class="icon"><div></button>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        let dialed = "";
+        let lastNumber = null;
+        let lastTime = Date.now();
+        const pauseThreshold = 1000; // milliseconds
+
+        // Handle number presses
+        document.querySelectorAll(".dial-button").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const num = btn.textContent;
+            const now = Date.now();
+
+            if (dialed.length > 0) {
+              const lastChar = dialed[dialed.length - 1];
+              // Add dash if number changed or pause exceeded
+              if (num !== lastNumber || now - lastTime > pauseThreshold) {
+                if (lastChar !== "-") {
+                  dialed += "-";
+                }
+              }
+            }
+
+            dialed += num;
+            lastNumber = num;
+            lastTime = now;
+          });
+        });
+
+        // Handle call button
+        document.querySelector(".call-button").addEventListener("click", () => {
+          console.log("Calling number:", dialed);
+          // Send post request to server
+          fetch("/call", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ number: dialed }),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log("Call response:", data);
+              // Update notification
+              const notification = document.getElementById("notification");
+              notification.textContent = data;
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+          dialed = "";
+          lastNumber = null;
+          lastTime = Date.now();
+        });
+
+        // Handle hang up button
+        document
+          .querySelector(".hangup-button")
+          .addEventListener("click", () => {
+            dialed = "";
+            lastNumber = null;
+            lastTime = Date.now();
+            console.log("Call ended, input cleared.");
+          });
+      })();
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

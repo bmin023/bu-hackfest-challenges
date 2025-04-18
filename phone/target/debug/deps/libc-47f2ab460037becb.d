@@ -1,0 +1,12 @@
+/Users/bko/code/hackfest-challenges/phone/target/debug/deps/liblibc-47f2ab460037becb.rmeta: /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/lib.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/macros.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/primitives.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/b64/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/b64/aarch64/mod.rs
+
+/Users/bko/code/hackfest-challenges/phone/target/debug/deps/libc-47f2ab460037becb.d: /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/lib.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/macros.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/primitives.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/b64/mod.rs /Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/b64/aarch64/mod.rs
+
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/lib.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/macros.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/primitives.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/mod.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/mod.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/mod.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/b64/mod.rs:
+/Users/bko/.cargo/registry/src/index.crates.io-6f17d22bba15001f/libc-0.2.172/src/unix/bsd/apple/b64/aarch64/mod.rs:

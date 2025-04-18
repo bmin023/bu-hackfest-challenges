@@ -1,0 +1,1 @@
+fn(axum::Json<String>, State<Arc<std::sync::Mutex<String>>>) -> impl Future<Output = String> {handle_submit}
