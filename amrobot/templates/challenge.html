@@ -1,0 +1,37 @@
+{% match challenge %}
+{% when Some with (c) %}
+<form hx-post="/submit" hx-target="#body" class="challenge">
+  <h2>Challenge</h2>
+  <label for="answer">{{ c.question }}</label>
+  <input type="number" id="answer" name="answer" required>
+  <input type="hidden" name="uuid" value="{{ c.uuid }}">
+  <label for="flag">Flag</label>
+  <input type="text" id="flag" name="flag" placeholder="<flag>" required>
+  <input type="submit" value="Submit">
+</form>
+{% when None %}
+{% endmatch %}
+{% match message %}
+{% when Some with (msg) %}
+<p id="message">{{ msg }}</p>
+{% when None %}
+{% endmatch %}
+<div class="captcha-box">
+  <label class="checkbox-group">
+    {% if loading %}
+      <div class="loader"></div>
+    {% else %}
+      <input type="checkbox" hx-post="/challenge" hx-target="#body">
+      <span class="checkbox-custom"></span>
+    {% endif %}
+    <span>I'm a robot</span>
+  </label>
+  <div class="spacer"></div>
+  <div class="captcha-logo">
+    <div id="bot-icon" data-lucide="bot"/>
+  </div>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>I, Robot</title>
+  <script src="https://unpkg.com/htmx.org@2.0.4"
+    integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+    crossorigin="anonymous"></script>
+  <style>
+    /* page background & centering */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    /* outer card */
+    .captcha-box {
+      background: #fff;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      max-width: 360px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    /* left side: checkbox + label */
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox-group input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .checkbox-custom {
+      width: 20px;
+      height: 20px;
+      border: 4px solid #a3a3a3;
+      border-radius: 2px;
+      margin-right: 8px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* checkmark (hidden until checked) */
+    .checkbox-group input:checked+.checkbox-custom::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 1px;
+      width: 6px;
+      height: 12px;
+      border: solid #4285f4;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .checkbox-group label {
+      font-size: 24;
+      color: #202124;
+      user-select: none;
+    }
+
+    .checkbox-group span {
+      font-size: 24px;
+    }
+
+    /* spacer */
+    .spacer {
+      flex: 1;
+    }
+
+    /* right side: logo + links */
+    .captcha-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 10px;
+      color: #70757a;
+      line-height: 1.2;
+    }
+
+    #bot-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 4px;
+      margin-left: 6px;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3;
+      /* Light grey */
+      border-top: 16px solid #3498db;
+      /* Blue */
+      border-radius: 50%;
+      width: 20;
+      height: 20;
+      animation: spin 2s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    .challenge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #dadce0;
+      margin: 20px;
+      padding: 20px;
+    }
+    .challenge h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+    .challenge label {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #555;
+    }
+    .challenge input[type="number"],
+    .challenge input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      color: #333;
+    }
+    .challenge input[type="submit"] {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #message {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="body">
+    <div class="captcha-box">
+      <label class="checkbox-group">
+        <input type="checkbox" hx-post="/challenge" hx-target="#body">
+        <span class="checkbox-custom"></span>
+        <span>I'm a robot</span>
+      </label>
+      <div class="spacer"></div>
+      <div class="captcha-logo">
+        <div id="bot-icon" data-lucide="bot" />
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
