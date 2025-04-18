@@ -1,0 +1,6 @@
+<p>The current flag is: <span class="flag">{{ current_flag }}</span></p>
+{% match message %}
+{% when Some with (val) %}
+  <p>{{ val }}</p>
+{% when None %}
+{% endmatch %}
